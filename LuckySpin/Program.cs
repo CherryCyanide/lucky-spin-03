@@ -7,6 +7,7 @@ builder.Services.AddMvc();
 //      The TextTransform class is registered with a Transient< > lifetime
 //TODO: Register the Spin class with a Scoped< > lifetime
 builder.Services.AddTransient<TextTransform>();
+builder.Services.AddScoped<Spin>();
 
 var app = builder.Build();
 
