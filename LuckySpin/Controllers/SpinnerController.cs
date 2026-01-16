@@ -33,13 +33,20 @@ namespace LuckySpin.Controllers
         }
 
         [HttpPost] //POST for Index gathers the Player info collected by the form 
-        public IActionResult Index(int Luck)
+        public IActionResult Index(String Name, int Luck)
         {
             
             //NOTE: At this point, the _spin object has already been created by DIJ and contains random Numbers
             //.     We only need to use the Player's form data to create a Player object and pass it to the Spin action 
             //DONE: Use the data from the form to create a new Player object assigning the luck value from the form
             Player player = new Player();
+            if (string.IsNullOrEmpty(Name))
+            {
+                player.Name = "Player";
+            } else
+            {
+                player.Name = Name;
+            }
             player.Luck = Luck;
             //DONE: Set a breakpoint on the following line of code and run the app in Debug mode
             //DONE: Instead of returning a View, the code below should "RedirectToAction" to the Spin Action
@@ -57,6 +64,7 @@ namespace LuckySpin.Controllers
         {
             //NOTE: At this point, the _spin object has already been created by DIJ and contains random Numbers
             //DONE: Use the the player's luck info to set the _spin object's Luck property appropriately
+            spin.Name = player.Name;
             spin.Luck = player.Luck;
             //DONE: Set a breakpoint on the following line of code and run the app in Debug mode
             return View(spin); //DONE: Pass the adjusted local _spin object to the Spin View for display

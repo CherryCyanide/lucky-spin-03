@@ -4,6 +4,7 @@ namespace LuckySpin.Models;
 
 public class Spin
 {
+    public String Name { get; set; } = "Player";
     public required int Luck { get; set; } = 7;
     public required int[] Numbers { get; set; }
     public string ImageDisplay { 
