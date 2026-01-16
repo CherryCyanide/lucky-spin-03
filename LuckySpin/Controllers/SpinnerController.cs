@@ -28,21 +28,23 @@ namespace LuckySpin.Controllers
         [HttpGet] //NOTE:This method is called by the browser's GET request for the URL http://localhost:XXXX/Spinner/Index
         public IActionResult Index()
         {
-            //TODO: Set a breakpoint on the following line of code and run the app in Debug mode
+            //DONE: Set a breakpoint on the following line of code and run the app in Debug mode
             return View();
         }
 
         [HttpPost] //POST for Index gathers the Player info collected by the form 
         public IActionResult Index(int Luck)
         {
+            
             //NOTE: At this point, the _spin object has already been created by DIJ and contains random Numbers
             //.     We only need to use the Player's form data to create a Player object and pass it to the Spin action 
-            //TODO: Use the data from the form to create a new Player object assigning the luck value from the form
-
-            //TODO: Set a breakpoint on the following line of code and run the app in Debug mode
-            //TODO: Instead of returning a View, the code below should "RedirectToAction" to the Spin Action
+            //DONE: Use the data from the form to create a new Player object assigning the luck value from the form
+            Player player = new Player();
+            player.Luck = Luck;
+            //DONE: Set a breakpoint on the following line of code and run the app in Debug mode
+            //DONE: Instead of returning a View, the code below should "RedirectToAction" to the Spin Action
             //      Be sure to pass the Player object to the Spin action
-            return View();
+            return RedirectToAction("Spin", player);
         }
 
         /***
@@ -50,14 +52,14 @@ namespace LuckySpin.Controllers
          * to include the Player's Luck value
          **/
         [HttpGet] //NOTE: this method is called by the RedirectToAction method, not a browser request
-        //TOD): Adjust the Spin action [GET] to accept a Player object as a parameter
-        public IActionResult Spin()
+        //DONE: Adjust the Spin action [GET] to accept a Player object as a parameter
+        public IActionResult Spin(Player player)
         {
             //NOTE: At this point, the _spin object has already been created by DIJ and contains random Numbers
-            //TODO: Use the the player's luck info to set the _spin object's Luck property appropriately
-
-            //TODO: Set a breakpoint on the following line of code and run the app in Debug mode
-            return View(); //TODO: Pass the adjusted local _spin object to the Spin View for display
+            //DONE: Use the the player's luck info to set the _spin object's Luck property appropriately
+            spin.Luck = player.Luck;
+            //DONE: Set a breakpoint on the following line of code and run the app in Debug mode
+            return View(spin); //DONE: Pass the adjusted local _spin object to the Spin View for display
         }
     }
 }

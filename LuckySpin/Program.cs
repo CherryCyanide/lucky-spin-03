@@ -5,7 +5,7 @@ builder.Services.AddMvc();
 
 //NOTE - DIJ Part 0: Registers the classes, TextTranform and Spin class, as available for injection
 //      The TextTransform class is registered with a Transient< > lifetime
-//TODO: Register the Spin class with a Scoped< > lifetime
+//DONE: Register the Spin class with a Scoped< > lifetime
 builder.Services.AddTransient<TextTransform>();
 builder.Services.AddScoped<Spin>();
 
